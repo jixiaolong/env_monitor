@@ -50,12 +50,12 @@ def compute_signature(params, secret):
     return signature
 
 
-def send_sms(phones, location, field_type, field_value,
+def send_sms(phones, base_num, field_type, field_value,
              sms_sign='水质监测平台', sms_tpl='SMS_53900101'):
     user_settings = {
         'Action': 'SingleSendSms',
         'ParamString': json.dumps({
-            'location': location,
+            'base_num': base_num,
             "field_type": field_type,
             "field_value": field_value,
             "time": datetime.datetime.now().strftime("%H:%M:%S")
@@ -75,6 +75,7 @@ def send_sms(phones, location, field_type, field_value,
 
     print "resp status_code %s" % resp.status_code
     print "resp content %s" % resp.json()
+    return resp.status_code, resp.json()
 
 
 if __name__ == "__main__":
@@ -99,3 +100,5 @@ if __name__ == "__main__":
 
     print "resp status_code %s" % resp.status_code
     print "resp content %s" % resp.content
+
+a.publish("exception_check",'{"base_num":1701, "check_field": ["S2"]}')
