@@ -101,4 +101,4 @@ if __name__ == "__main__":
     print "resp status_code %s" % resp.status_code
     print "resp content %s" % resp.content
 
-a.publish("exception_check",'{"base_num":1701, "check_field": ["S2"]}')
+# a.publish("exception_check",'{"base_num":1701, "check_field": ["S2"]}')
